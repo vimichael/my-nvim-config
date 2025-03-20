@@ -5,6 +5,11 @@ return {
 		heading = {
 			icons = {},
 		},
+		html = {
+			comment = {
+				conceal = false,
+			},
+		},
 		render_modes = true,
 	},
 }

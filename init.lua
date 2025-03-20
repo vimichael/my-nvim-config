@@ -1,9 +1,17 @@
 local utils = require("utils")
+
 -- lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	local out = vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"--branch=stable",
+		lazyrepo,
+		lazypath,
+	})
 	if vim.v.shell_error ~= 0 then
 		vim.api.nvim_echo({
 			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
@@ -27,12 +35,21 @@ require("lazy").setup("plugins", {
 })
 
 vim.filetype.add({ extension = { templ = "templ" } })
-vim.filetype.add({ extension = { nim = "nim" }, filename = { ["Nim"] = "nim" } })
+vim.filetype.add({ extension = { purs = "purescript" } })
+vim.filetype.add({
+	extension = { nim = "nim" },
+	filename = { ["Nim"] = "nim" },
+})
+
+-- stop zig qf list from opening >:(
+vim.g.zig_fmt_parse_errors = 0
 
 -- treesitter config
 local config = require("nvim-treesitter.configs")
 config.setup({
 	ensure_installed = {
+		"typst",
+		"purescript",
 		"nix",
 		"nim",
 		"vimdoc",
@@ -55,8 +72,9 @@ config.setup({
 		"sql",
 		"markdown",
 		"latex",
+		"gdscript",
+		"gdshader",
 	},
-	-- sql being slow on large files :(
 	highlight = {
 		enable = true,
 	},
@@ -64,8 +82,34 @@ config.setup({
 	modules = {},
 	sync_install = true,
 	auto_install = true,
-	ignore_install = {},
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "<CR>",
+			scope_incremental = "<CR>",
+			node_incremental = "<TAB>",
+			node_decremental = "<S-TAB>",
+		},
+	},
 })
+
+-- EXPERIMENT :: highlight and move through functions in file with one keymap
+
+-- vim.keymap.set({ "n", "v" }, "[f", function()
+-- 	print("func!")
+-- 	vim.cmd("norm [[f")
+-- 	vim.cmd("norm vaf")
+-- 	vim.cmd("norm zz")
+-- end)
+
+-- vim.keymap.set({ "n", "v" }, "]f", function()
+-- 	print("func!")
+-- 	vim.cmd("norm [[F")
+-- 	vim.cmd("norm vaf")
+-- 	vim.cmd("norm zz")
+-- end)
+
+-- END EXPERIMENT :: not successful (yet)
 
 -- language specific mappings go here
 require("cool_stuff")

@@ -12,6 +12,7 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
+					"fortls",
 					"nil_ls",
 					"bashls",
 					"lua_ls",
@@ -24,6 +25,8 @@ return {
 					"htmx",
 					"tailwindcss",
 					"ts_ls",
+					"astro",
+					-- "gdscript",
 					-- "tsserver",
 					"pylsp",
 					"clangd",
@@ -32,14 +35,13 @@ return {
 					"jsonls",
 					"eslint",
 					-- "hls",
-					"zls",
+					-- "zls",
 					"marksman",
 					"sqlls",
 					"wgsl_analyzer",
 					"texlab",
 					"intelephense",
 					"nim_langserver",
-					"zls",
 				},
 			})
 		end,
@@ -50,7 +52,56 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
+			local configs = require("lspconfig.configs")
 
+			lspconfig.fortls.setup({
+				capabilities = capabilities,
+				root_dir = require("lspconfig").util.root_pattern("*.f90"),
+			})
+			lspconfig.purescriptls.setup({
+				capabilities = capabilities,
+				filetypes = { "purescript" },
+				settings = {
+					purescript = {
+						addSpagoSources = true, -- e.g. any purescript language-server config here
+					},
+				},
+				flags = {
+					debounce_text_changes = 150,
+				},
+			})
+			lspconfig.ols.setup({
+				capabilities = capabilities,
+				root_dir = require("lspconfig").util.root_pattern("*.odin"),
+			})
+			lspconfig.ocamllsp.setup({
+				capabilities = capabilities,
+				cmd = { "ocamllsp", "--stdio" },
+				filetypes = { "ocaml", "reason" },
+				root_dir = require("lspconfig").util.root_pattern("*.opam", "esy.json", "package.json"),
+			})
+			if not configs.roc_ls then
+				configs.roc_ls = {
+					default_config = {
+						cmd = { "roc_language_server", "--stdio" },
+						capabilties = capabilities,
+						filetypes = {
+							"roc",
+						},
+						single_file_support = true,
+					},
+				}
+			end
+			lspconfig.roc_ls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.gdscript.setup({
+				capabilities = capabilities,
+				filetypes = { "gd", "gdscript", "gdscript3" },
+			})
+			lspconfig.astro.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.nil_ls.setup({
 				capabilities = capabilities,
 			})
@@ -76,6 +127,7 @@ return {
 			})
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
+				-- cmd = { "lua_ls" },
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -143,38 +195,37 @@ return {
 					"markdown",
 				},
 			})
-			lspconfig.tailwindcss.setup({
-				capabilities = capabilities,
-				filetypes = {
-					"templ",
-					"html",
-					"css",
-					"javascriptreact",
-					"typescriptreact",
-					"javascript",
-					"typescript",
-					"jsx",
-					"tsx",
-				},
-				root_dir = require("lspconfig").util.root_pattern(
-					"tailwind.config.js",
-					"tailwind.config.cjs",
-					"tailwind.config.mjs",
-					"tailwind.config.ts",
-					"postcss.config.js",
-					"postcss.config.cjs",
-					"postcss.config.mjs",
-					"postcss.config.ts",
-					"package.json",
-					"node_modules",
-					".git"
-				),
-			})
+			-- lspconfig.tailwindcss.setup({
+			-- 	capabilities = capabilities,
+			-- 	filetypes = {
+			-- 		"templ",
+			-- 		"html",
+			-- 		"css",
+			-- 		"javascriptreact",
+			-- 		"typescriptreact",
+			-- 		"javascript",
+			-- 		"typescript",
+			-- 		"jsx",
+			-- 		"tsx",
+			-- 	},
+			-- 	root_dir = require("lspconfig").util.root_pattern(
+			-- 		"tailwind.config.js",
+			-- 		"tailwind.config.cjs",
+			-- 		"tailwind.config.mjs",
+			-- 		"tailwind.config.ts",
+			-- 		"postcss.config.js",
+			-- 		"postcss.config.cjs",
+			-- 		"postcss.config.mjs",
+			-- 		"postcss.config.ts",
+			-- 		"package.json",
+			-- 		"node_modules",
+			-- 		".git"
+			-- 	),
+			-- })
 			lspconfig.templ.setup({
 				capabilities = capabilities,
 				filetypes = { "templ" },
 			})
-			local configs = require("lspconfig.configs")
 
 			if not configs.ts_ls then
 				configs.ts_ls = {
@@ -235,7 +286,7 @@ return {
 					elseif os_name == "linux" then
 						return "/usr/bin/python3"
 					else
-						return nil
+						return "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
 					end
 					-- Fallback to global Python interpreter
 				end

@@ -9,9 +9,13 @@ vim.cmd("autocmd FileType sql setlocal noautoindent")
 vim.cmd("autocmd FileType sql setlocal nosmartindent")
 vim.cmd("autocmd FileType sql setlocal nocindent")
 vim.cmd("set signcolumn=no")
+vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
 
 vim.o.scrolloff = 5
 vim.opt.ignorecase = true
+
+-- hmmmmmmmmmmmmmmmmm not sure about this
+vim.opt.colorcolumn = "80"
 
 -- minor visual changes to panes
 vim.opt.fillchars =
@@ -24,8 +28,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 -- window manips
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
-vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]]) -- make the window bigger horizontally by pressing shift and =
-vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]]) -- make the window smaller horizontally by pressing shift and -
 
 -- vim.cmd("set guicursor=n-v-c:block-blinkon1,i-ci:ver25")
 vim.opt.guicursor = "n-v-c:block-blinkon1-CursorInsert,i:block-CursorInsert"
@@ -66,15 +68,6 @@ vim.keymap.set("n", "<C-n>", ":Telescope colorscheme<CR>")
 -- remaps
 vim.g.mapleader = " "
 
--- zig
--- vim.g.zig_fmt_autosave = 0
-
--- neo-tree setup
--- vim.keymap.set("n", "<leader>n", ":Neotree filesystem reveal right<CR>")
-
--- oil.nvim setup
-vim.keymap.set("n", "<leader>N", ":Oil<CR>")
-vim.keymap.set("n", "<leader>n", ':lua require("oil").toggle_float()<CR>')
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-f>", "<C-f>zz")
@@ -214,16 +207,6 @@ function OpenInObsidian()
 		vim.cmd("silent open " .. file) -- Default behavior (for non-.md files)
 	end
 end
-
---
--- vim.api.nvim_create_autocmd("BufLeave", {
--- 	pattern = { "*.md" },
--- 	callback = function()
--- 		vim.cmd("colorscheme base16-black-metal-gorgoroth")
--- 	end,
--- 	nested = true,
--- })
---
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	vim.g.disable_autoformat = true
