@@ -15,8 +15,7 @@ vim.o.scrolloff = 5
 vim.opt.ignorecase = true
 
 -- hmmmmmmmmmmmmmmmmm not sure about this
-vim.opt.colorcolumn = "80"
-vim.o.cmdheight = 1
+-- vim.opt.colorcolumn = "80"
 
 -- minor visual changes to panes
 vim.opt.fillchars =
@@ -197,15 +196,15 @@ vim.api.nvim_create_autocmd({ "FileType", "VimEnter", "BufReadPre" }, {
 })
 
 function OpenInObsidian()
-  local file = vim.fn.expand("<cfile>")                -- Get the file path under the cursor
+  local file = vim.fn.expand("<cfile>")                  -- Get the file path under the cursor
   if file:match("%.md$") then
-    local vault = "notes"                              -- Replace with your Obsidian vault name
+    local vault = "notes"                                -- Replace with your Obsidian vault name
     local vault_path = vim.fn.expand("~/path/to/vault/") -- Adjust to your vault path
-    local relative_path = file:gsub(vault_path, "")    -- Get relative path from vault root
+    local relative_path = file:gsub(vault_path, "")      -- Get relative path from vault root
     local obsidian_url = "obsidian://open?vault=" .. vault .. "&file=" .. vim.fn.fnameescape(relative_path)
-    vim.fn.system({ "open", obsidian_url })            -- macOS 'open' command to launch Obsidian
+    vim.fn.system({ "open", obsidian_url })              -- macOS 'open' command to launch Obsidian
   else
-    vim.cmd("silent open " .. file)                    -- Default behavior (for non-.md files)
+    vim.cmd("silent open " .. file)                      -- Default behavior (for non-.md files)
   end
 end
 
@@ -221,3 +220,5 @@ vim.api.nvim_create_user_command("FormatEnable", function()
 end, {
   desc = "Re-enable autoformat-on-save",
 })
+
+vim.api.nvim_command('autocmd VimResized * wincmd =')

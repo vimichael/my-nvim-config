@@ -6,6 +6,8 @@
         "leave_snippet"
     ],
     "diagnostics.disable": [
-        "undefined-field"
+        "undefined-field",
+        "missing-fields",
+        "redundant-parameter"
     ]
 }

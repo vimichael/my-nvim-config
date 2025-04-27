@@ -1,5 +1,6 @@
 local utils = require("utils")
 
+
 -- lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -83,34 +84,7 @@ config.setup({
   modules = {},
   sync_install = true,
   auto_install = true,
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<CR>",
-      scope_incremental = "<CR>",
-      node_incremental = "<TAB>",
-      node_decremental = "<S-TAB>",
-    },
-  },
 })
-
--- EXPERIMENT :: highlight and move through functions in file with one keymap
-
--- vim.keymap.set({ "n", "v" }, "[f", function()
--- 	print("func!")
--- 	vim.cmd("norm [[f")
--- 	vim.cmd("norm vaf")
--- 	vim.cmd("norm zz")
--- end)
-
--- vim.keymap.set({ "n", "v" }, "]f", function()
--- 	print("func!")
--- 	vim.cmd("norm [[F")
--- 	vim.cmd("norm vaf")
--- 	vim.cmd("norm zz")
--- end)
-
--- END EXPERIMENT :: not successful (yet)
 
 -- language specific mappings go here
 require("cool_stuff")
@@ -119,7 +93,8 @@ require("mappings")
 utils.color_overrides.setup_colorscheme_overrides()
 
 -- theme
-vim.cmd("colorscheme base16-black-metal-gorgoroth")
+-- vim.cmd("colorscheme base16-black-metal-gorgoroth")
+vim.cmd("colorscheme cosec-twilight")
 
 utils.fix_telescope_parens_win()
 utils.dashboard.setup_dashboard_image_colors()
