@@ -42,6 +42,7 @@ function M.cosec_twilight_overrides()
   hl(0, "LineNr", { fg = "#d6d2c8" })
 
   hl(0, "Question", { bg = "#9b8d7f" })
+  hl(0, "DiagnosticVirtualTextError", { fg = "#912222" })
 end
 
 function M.black_metal_theme_overrides()
