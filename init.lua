@@ -1,5 +1,6 @@
 local utils = require("utils")
 
+local colorscheme = "base16-black-metal-gorgoroth"
 
 -- lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -93,8 +94,7 @@ require("mappings")
 utils.color_overrides.setup_colorscheme_overrides()
 
 -- theme
--- vim.cmd("colorscheme base16-black-metal-gorgoroth")
-vim.cmd("colorscheme cosec-twilight")
+vim.cmd("colorscheme " .. colorscheme)
 
 utils.fix_telescope_parens_win()
 utils.dashboard.setup_dashboard_image_colors()

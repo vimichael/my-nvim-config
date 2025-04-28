@@ -48,6 +48,7 @@ end
 function M.black_metal_theme_overrides()
   vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = "#912222" })
   vim.api.nvim_set_hl(0, "TSComment", { fg = "#6f7b68", gui = nil })
+  vim.api.nvim_set_hl(0, "Comment", { fg = "#6f7b68", gui = nil })
   vim.api.nvim_set_hl(0, "Visual", { bg = "#9b8d7f", fg = "#1e1e1e" })
   vim.api.nvim_set_hl(0, "Search", { bg = "#9b8d7f", fg = "#1e1e1e" })
   vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#9b8d7f", fg = "#1e1e1e" })
