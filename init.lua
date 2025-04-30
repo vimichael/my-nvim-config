@@ -1,6 +1,6 @@
 local utils = require("utils")
 
-local colorscheme = "base16-black-metal-gorgoroth"
+local colorscheme = "custom_cosec_twilight"
 
 -- lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

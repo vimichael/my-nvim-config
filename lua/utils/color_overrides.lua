@@ -132,7 +132,7 @@ function M.setup_colorscheme_overrides()
       elseif colorscheme == "zenbones" then
         M.zenbones_theme_overrides()
       elseif colorscheme == "cosec-twilight" then
-        M.cosec_twilight_overrides()
+        -- M.cosec_twilight_overrides()
       end
     end,
   })

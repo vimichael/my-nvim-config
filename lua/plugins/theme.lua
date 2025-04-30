@@ -9,9 +9,6 @@ return {
     end
   },
   {
-    "CosecSecCot/cosec-twilight.nvim"
-  },
-  {
     "Skardyy/makurai-nvim"
   },
   {

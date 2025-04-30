@@ -15,6 +15,7 @@ return {
           "fortls",
           -- "nil_ls",
           "bashls",
+          "cmake",
           "lua_ls",
           "rust_analyzer",
           "gopls",
@@ -54,6 +55,9 @@ return {
       local lspconfig = require("lspconfig")
       local configs = require("lspconfig.configs")
 
+      lspconfig.cmake.setup({
+        capabilities = capabilities,
+      })
       lspconfig.fortls.setup({
         capabilities = capabilities,
         root_dir = require("lspconfig").util.root_pattern("*.f90"),
