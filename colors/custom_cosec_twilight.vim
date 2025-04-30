@@ -9,8 +9,8 @@ endif
 let g:colors_name = 'custom_cosec_twilight'
 
 " Define highlight groups
-highlight Normal        guifg=#FFFEDB guibg=#202020
-highlight NormalFloat   guifg=#FFFEDB guibg=#202020
+highlight Normal        guifg=#FEFEFE guibg=#202020
+highlight NormalFloat   guifg=#FEFEFE guibg=#202020
 highlight Comment       guifg=#6f7b68
 highlight TSComment       guifg=#6f7b68
 highlight Conceal       guibg=#262626
