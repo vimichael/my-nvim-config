@@ -66,4 +66,3 @@ highlight Float         guifg=#6f7b68
 highlight Number         guifg=#6f7b68
 highlight Boolean         guifg=#6f7b68
 highlight WinSeparator         guibg=#111111 guifg=#888888
-
