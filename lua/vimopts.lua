@@ -222,3 +222,7 @@ end, {
 })
 
 vim.api.nvim_command('autocmd VimResized * wincmd =')
+
+vim.diagnostic.config({
+  virtual_text = true,
+})

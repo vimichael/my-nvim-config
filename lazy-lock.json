@@ -4,6 +4,7 @@
   "Zenburn": { "branch": "master", "commit": "8df765342b2a33c728ce147d6c8e66359378f9d5" },
   "alpha-nvim": { "branch": "main", "commit": "de72250e054e5e691b9736ee30db72c65d560771" },
   "base16-nvim": { "branch": "master", "commit": "965160025d0facbe9caa863e5beef2a7a488e9d1" },
+  "black-metal-theme-neovim": { "branch": "main", "commit": "1838337ce73a8de38e81bc40abe54f07b2380273" },
   "blink.cmp": { "branch": "main", "commit": "cb5e346d9e0efa7a3eee7fd4da0b690c48d2a98e" },
   "cmp-latex-symbols": { "branch": "main", "commit": "86b68e6d6c550442d4a3f826e1b8358c5300824c" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "a8912b88ce488f411177fc8aed358b04dc246d7b" },
