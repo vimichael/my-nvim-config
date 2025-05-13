@@ -2,3 +2,5 @@
 -- 	target_file = "todo.md",
 -- 	global_file = "~/notes/todo.md",
 -- })
+
+require("cool_stuff.chelpers").setup()
