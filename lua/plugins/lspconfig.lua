@@ -247,12 +247,23 @@ return {
               "html",
             },
             root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json", ".git"),
-            -- single_file_support = true,
+            single_file_support = true,
           },
         }
       end
       lspconfig.ts_ls.setup({
-        -- capabilties = capabilities,
+        capabilties = capabilities,
+        cmd = { "typescript-language-server", "--stdio" },
+        capabilties = capabilities,
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "html",
+        },
+        root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json", ".git"),
+        single_file_support = true,
       })
       lspconfig.eslint.setup({
         capabilties = capabilities,
