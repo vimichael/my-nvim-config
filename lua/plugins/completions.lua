@@ -1,32 +1,39 @@
 return {
-  {
-    "hrsh7th/cmp-nvim-lsp",
-  },
+  -- {
+  --   "hrsh7th/cmp-nvim-lsp",
+  -- },
   {
     "kdheepak/cmp-latex-symbols",
   },
   {
-    "L3MON4D3/LuaSnip",
-    dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-      "rafamadriz/friendly-snippets",
-      "onsails/lspkind.nvim",
-    },
-  },
-  {
     'saghen/blink.cmp',
-    -- dependencies = { 'rafamadriz/friendly-snippets' },
-    dependencies = { 'L3MON4D3/LuaSnip' },
+    dependencies = {
+      {
+        'L3MON4D3/LuaSnip',
+        version = "v2.*",
+        -- dependencies = {
+        --   "saadparwaiz1/cmp_luasnip",
+        --   {
+        --     "rafamadriz/friendly-snippets",
+        --     config = function()
+        --       require('luasnip.loaders.from_vscode').lazy_load()
+        --     end
+        --   },
+        --   "onsails/lspkind.nvim",
+        -- },
+      },
+    },
     version = '1.*',
 
     ---@module 'blink.cmp'
     opts = {
       keymap = {
-        preset = 'default',
-        ["<Tab>"] = { "select_next", "fallback" },
-        ["<S-Tab>"] = { "select_prev", "fallback" },
-        ["<CR>"] = { "accept", "fallback" }
+        ['<Tab>'] = { "select_next", 'snippet_forward', 'fallback' },
+        ['<S-Tab>'] = { "select_prev", 'snippet_backward', 'fallback' },
+        ["<CR>"] = { "accept", "fallback" },
+        ["<C-e>"] = { "hide", "fallback" }
       },
+
       appearance = {
         nerd_font_variant = 'mono'
       },
@@ -39,6 +46,15 @@ return {
       completion = {
         trigger = {
           show_on_insert_on_trigger_character = false,
+          show_on_accept_on_trigger_character = false,
+          show_on_blocked_trigger_characters = { '{', '(', '}', ')' },
+        },
+        list = {
+          selection = {
+            preselect = function(ctx)
+              return not require('blink.cmp').snippet_active({ direction = 1 })
+            end,
+          },
         },
         documentation = {
           auto_show = true,
@@ -88,7 +104,13 @@ return {
 
       },
       snippets = {
-        preset = "luasnip"
+        preset = "luasnip",
+        -- Function to use when expanding LSP provided snippets
+        expand = function(snippet) vim.snippet.expand(snippet) end,
+        -- Function to use when checking if a snippet is active
+        active = function(filter) return vim.snippet.active(filter) end,
+        -- Function to use when jumping between tab stops in a snippet, where direction can be negative or positive
+        jump = function(direction) vim.snippet.jump(direction) end,
       },
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
