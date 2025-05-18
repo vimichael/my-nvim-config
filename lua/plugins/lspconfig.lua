@@ -27,6 +27,7 @@ return {
           "tailwindcss",
           "ts_ls",
           "astro",
+          "ols",
           -- "gdscript",
           -- "tsserver",
           "pylsp",
