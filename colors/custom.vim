@@ -1,4 +1,4 @@
-" took most of these colors from github.com/CosecSecCot/cosec-twilight.nvim.
+" took many of these colors from github.com/CosecSecCot/cosec-twilight.nvim.
 
 set bg=dark
 hi clear
@@ -6,7 +6,7 @@ if exists('syntax_on')
   syntax reset
 endif
 
-let g:colors_name = 'custom_cosec_twilight'
+let g:colors_name = 'custom'
 
 " Define highlight groups
 highlight Normal        guifg=#FEFEFE guibg=#202020
