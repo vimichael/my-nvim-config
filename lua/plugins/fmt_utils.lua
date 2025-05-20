@@ -7,15 +7,17 @@ return {
 			require("treesj").setup({})
 		end,
 	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = function()
-			local npairs = require("nvim-autopairs")
-			npairs.setup({})
-		end,
-		opts = {},
-	},
+	-- {
+	-- 	"windwp/nvim-autopairs",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		local npairs = require("nvim-autopairs")
+	-- 		npairs.setup({
+	-- 			enable_check_bracket_line = false,
+	-- 		})
+	-- 	end,
+	-- 	opts = {},
+	-- },
 	{
 		"echasnovski/mini.surround",
 		opts = {
