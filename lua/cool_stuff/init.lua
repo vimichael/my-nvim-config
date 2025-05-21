@@ -1,6 +1,6 @@
--- require("cool_stuff.todo_float").setup({
--- 	target_file = "todo.md",
--- 	global_file = "~/notes/todo.md",
--- })
-
 require("cool_stuff.chelpers").setup()
+require("cool_stuff.nts").setup()
+
+-- keymaps for nts
+vim.keymap.set("n", "[n", ":Nts<CR>")
+vim.keymap.set("n", "[j", ":NtsJournal<CR>")
