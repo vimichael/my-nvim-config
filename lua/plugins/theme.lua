@@ -1,5 +1,8 @@
 return {
   {
+    "vim-scripts/newsprint.vim"
+  },
+  {
     "gbprod/nord.nvim"
   },
   {
