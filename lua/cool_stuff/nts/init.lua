@@ -27,8 +27,12 @@ local function create_note(args)
 
 				-- vim.notify("creating note at: " .. loc)
 
-				local output = vim.system({ "nts", "note", M.opts.root_dir .. "/" .. loc, input }, { text = true })
-					:wait()
+				local cmds = { "nts", "note", M.opts.root_dir .. "/" .. loc }
+				for word in input:gmatch("%S+") do
+					table.insert(cmds, word)
+				end
+
+				local output = vim.system(cmds):wait()
 
 				vim.cmd("edit " .. output.stdout)
 			end)
