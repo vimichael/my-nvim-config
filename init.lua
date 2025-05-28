@@ -98,3 +98,10 @@ vim.cmd("colorscheme " .. colorscheme)
 
 utils.fix_telescope_parens_win()
 utils.dashboard.setup_dashboard_image_colors()
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.conceallevel = 2
+  end,
+})
