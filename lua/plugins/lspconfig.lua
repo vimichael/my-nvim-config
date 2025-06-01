@@ -201,7 +201,6 @@ return {
           "typescript",
           "jsx",
           "tsx",
-          "markdown",
         },
       })
       -- lspconfig.tailwindcss.setup({
