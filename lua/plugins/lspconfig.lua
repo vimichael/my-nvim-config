@@ -15,6 +15,7 @@ return {
           "fortls",
           -- "nil_ls",
           "bashls",
+          "omnisharp",
           "cmake",
           "lua_ls",
           "rust_analyzer",
@@ -328,6 +329,10 @@ return {
       })
       lspconfig.nim_langserver.setup({
         capabilties = capabilities,
+      })
+      lspconfig.omnisharp.setup({
+        capabilties = capabilities,
+        cmd = { "OmniSharp" },
       })
     end,
   },
