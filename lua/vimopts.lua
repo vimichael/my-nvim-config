@@ -25,6 +25,11 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
+-- because [e goes to the next error
+-- for consistency
+vim.keymap.set("n", "[s", "]s")
+vim.keymap.set("n", "]s", "[s")
+
 -- window manips
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
 vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
