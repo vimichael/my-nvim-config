@@ -1,12 +1,12 @@
-return {
-  {
-    "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup({
-        PATH = "prepend",
-      })
-    end,
-  },
+return { 
+{
+  "williamboman/mason.nvim",
+  config = function()
+    require("mason").setup({
+      PATH = "prepend",
+    })
+  end,
+},
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
