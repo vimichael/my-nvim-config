@@ -1,5 +1,6 @@
-return {
-  "mrcjkb/rustaceanvim",
-  version = "^6",
-  lazy = false,
-}
+return {}
+-- return {
+--   "mrcjkb/rustaceanvim",
+--   version = "^6",
+--   lazy = false,
+-- }

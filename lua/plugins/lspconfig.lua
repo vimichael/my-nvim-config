@@ -18,7 +18,6 @@ return {
           "omnisharp",
           "cmake",
           "lua_ls",
-          "rust_analyzer",
           "gopls",
           "templ",
           "html",
@@ -256,7 +255,6 @@ return {
       lspconfig.ts_ls.setup({
         capabilties = capabilities,
         cmd = { "typescript-language-server", "--stdio" },
-        capabilties = capabilities,
         filetypes = {
           "javascript",
           "javascriptreact",
@@ -329,6 +327,18 @@ return {
       })
       lspconfig.nim_langserver.setup({
         capabilties = capabilities,
+      })
+      lspconfig.rust_analyzer.setup({
+        capabilties = capabilities,
+        filetypes = { "rust" },
+        root_dir = require("lspconfig").util.root_pattern("Cargo.toml", "src/*.rs"),
+        settings = {
+          ["rust_analyzer"] = {
+            cargo = {
+              allFeatures = true,
+            }
+          }
+        }
       })
       lspconfig.omnisharp.setup({
         capabilties = capabilities,
