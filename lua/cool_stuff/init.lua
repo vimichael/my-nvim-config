@@ -1,5 +1,6 @@
 require("cool_stuff.chelpers").setup()
 require("cool_stuff.ntsh").setup()
+require("cool_stuff.game").setup()
 
 -- keymaps for nts
 vim.keymap.set("n", "[n", ":Nts<CR>")

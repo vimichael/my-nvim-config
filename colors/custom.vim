@@ -22,7 +22,7 @@ highlight DiffChange    guifg=#FFFEDB guibg=#262636
 highlight DiffDelete    guifg=#C34143 guibg=#42242B
 highlight DiffText      guifg=#FFFEDB guibg=#49443C
 highlight Directory     guifg=#C1C88D
-highlight Error         guifg=#FFFEDB gui=undercurl
+highlight Error         guifg=#C34143 gui=undercurl
 highlight ErrorMsg      guifg=#FFFEDB
 "highlight FoldColumn
 "highlight Folded
