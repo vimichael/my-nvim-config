@@ -255,8 +255,6 @@ local function setup_hl()
   hl_namespace = vim.api.nvim_create_namespace("game")
 end
 
-
-
 local function setup_keymaps()
   vim.api.nvim_buf_set_keymap(buf, "n", "q", "", {
     noremap = false,
@@ -296,6 +294,7 @@ local function setup_keymaps()
   })
 end
 
+
 local function game()
   open_window()
   setup_screen()
@@ -321,6 +320,7 @@ local function game()
 
   frame()
 end
+
 
 
 M.setup = function()
