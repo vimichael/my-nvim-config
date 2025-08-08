@@ -10,7 +10,7 @@ vim.cmd("autocmd FileType sql setlocal nosmartindent")
 vim.cmd("autocmd FileType sql setlocal nocindent")
 vim.cmd("set signcolumn=no")
 vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
-
+vim.opt.exrc = true
 vim.o.scrolloff = 5
 vim.opt.ignorecase = true
 
@@ -30,9 +30,12 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "[s", "]s")
 vim.keymap.set("n", "]s", "[s")
 
+
 -- window manips
-vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]]) -- make the window biger vertically
-vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]]) -- make the window smaller vertically
+vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]])
+vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]])
+vim.keymap.set("n", "+", [[<cmd>horizontal resize +5<cr>]])
+vim.keymap.set("n", "^", [[<cmd>horizontal resize +5<cr>]])
 
 -- vim.cmd("set guicursor=n-v-c:block-blinkon1,i-ci:ver25")
 vim.opt.guicursor = "n-v-c:block-blinkon1-CursorInsert,i:block-CursorInsert"
@@ -72,6 +75,7 @@ vim.keymap.set("n", "<C-n>", ":Telescope colorscheme<CR>")
 
 -- remaps
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")

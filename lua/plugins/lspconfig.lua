@@ -22,7 +22,7 @@ return {
           "templ",
           "html",
           "cssls",
-          "emmet_language_server",
+          "emmet_ls",
           "htmx",
           "tailwindcss",
           "ts_ls",
@@ -171,6 +171,7 @@ return {
       })
       lspconfig.html.setup({
         capabilities = capabilities,
+        single_file_support = true,
         filetypes = {
           "templ",
           "html",
@@ -186,10 +187,12 @@ return {
       })
       lspconfig.htmx.setup({
         capabilities = capabilities,
+        single_file_support = true,
         filetypes = { "html", "templ" },
       })
-      lspconfig.emmet_language_server.setup({
+      lspconfig.emmet_ls.setup({
         capabilities = capabilities,
+        single_file_support = true,
         filetypes = {
           "templ",
           "html",
@@ -253,17 +256,17 @@ return {
         }
       end
       lspconfig.ts_ls.setup({
-        capabilties = capabilities,
-        cmd = { "typescript-language-server", "--stdio" },
-        filetypes = {
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact",
-          "html",
-        },
-        root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json", ".git"),
-        single_file_support = true,
+        -- capabilties = capabilities,
+        -- cmd = { "typescript-language-server", "--stdio" },
+        -- filetypes = {
+        --   "javascript",
+        --   "javascriptreact",
+        --   "typescript",
+        --   "typescriptreact",
+        --   "html",
+        -- },
+        -- root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json", ".git"),
+        -- single_file_support = true,
       })
       lspconfig.eslint.setup({
         capabilties = capabilities,
@@ -328,21 +331,13 @@ return {
       lspconfig.nim_langserver.setup({
         capabilties = capabilities,
       })
-      -- lspconfig.rust_analyzer.setup({
-      --   capabilties = capabilities,
-      --   filetypes = { "rust" },
-      --   root_dir = require("lspconfig").util.root_pattern("Cargo.toml", "src/*.rs"),
-      --   settings = {
-      --     ["rust_analyzer"] = {
-      --       cargo = {
-      --         allFeatures = true,
-      --       }
-      --     }
-      --   }
-      -- })
       lspconfig.omnisharp.setup({
         capabilties = capabilities,
         cmd = { "OmniSharp" },
+      })
+      lspconfig.fennel_ls.setup({
+        capabilties = capabilities,
+        cmd = { "fennel-ls" },
       })
     end,
   },

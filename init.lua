@@ -35,6 +35,23 @@ require("lazy").setup("plugins", {
   },
 })
 
+vim.api.nvim_create_augroup("ConjureRemoveSponsor", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = "conjure-log-*",
+  group = "ConjureRemoveSponsor",
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+    vim.schedule(function()
+      vim.api.nvim_buf_call(buf, function()
+        vim.cmd("silent! %s/; Sponsored by @.*//e")
+      end)
+    end)
+  end,
+})
+
+
+
 vim.filetype.add({ extension = { templ = "templ" } })
 vim.filetype.add({ extension = { llvm = "ll" } })
 vim.filetype.add({ extension = { purs = "purescript" } })
