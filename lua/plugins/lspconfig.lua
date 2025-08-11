@@ -23,7 +23,6 @@ return {
           "html",
           "cssls",
           "emmet_ls",
-          "htmx",
           "tailwindcss",
           "ts_ls",
           "astro",
@@ -169,27 +168,27 @@ return {
       lspconfig.yamlls.setup({
         capabilities = capabilities,
       })
-      lspconfig.html.setup({
-        capabilities = capabilities,
-        single_file_support = true,
-        filetypes = {
-          "templ",
-          "html",
-          "php",
-          "css",
-          "javascriptreact",
-          "typescriptreact",
-          "javascript",
-          "typescript",
-          "jsx",
-          "tsx",
-        },
-      })
-      lspconfig.htmx.setup({
-        capabilities = capabilities,
-        single_file_support = true,
-        filetypes = { "html", "templ" },
-      })
+      -- lspconfig.html.setup({
+      --   capabilities = capabilities,
+      --   single_file_support = true,
+      --   filetypes = {
+      --     "templ",
+      --     "html",
+      --     "php",
+      --     "css",
+      --     "javascriptreact",
+      --     "typescriptreact",
+      --     "javascript",
+      --     "typescript",
+      --     "jsx",
+      --     "tsx",
+      --   },
+      -- })
+      -- lspconfig.htmx.setup({
+      --   capabilities = capabilities,
+      --   single_file_support = true,
+      --   filetypes = { "html", "templ" },
+      -- })
       lspconfig.emmet_ls.setup({
         capabilities = capabilities,
         single_file_support = true,
@@ -338,6 +337,16 @@ return {
       lspconfig.fennel_ls.setup({
         capabilties = capabilities,
         cmd = { "fennel-ls" },
+      })
+      lspconfig.rescriptls.setup({
+        capabilties = capabilities,
+        cmd = { "rescript-language-server", "--stdio" },
+        root_dir = require("lspconfig").util.root_pattern("rescript.json"),
+      })
+      lspconfig.julials.setup({
+        capabilties = capabilities,
+        cmd = { "julia-lsp" },
+        root_dir = require("lspconfig").util.root_pattern("*.jl"),
       })
     end,
   },
