@@ -17,7 +17,7 @@ return {
         go = { "gofumpt", "golines", "goimports-reviser" },
         c = { "clang_format" },
         cpp = { "clang_format" },
-        haskell = { "ormolu" },
+        haskell = { "fourmolu" },
         yaml = { "yamlfmt" },
         html = { "prettier" },
         json = { "prettier" },
