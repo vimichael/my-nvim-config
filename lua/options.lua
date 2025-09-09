@@ -13,6 +13,7 @@ vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.11/bi
 vim.opt.exrc = true
 vim.o.scrolloff = 5
 vim.opt.ignorecase = true
+vim.g.zig_fmt_parse_errors = 0
 
 -- hmmmmmmmmmmmmmmmmm not sure about this
 -- vim.opt.colorcolumn = "80"

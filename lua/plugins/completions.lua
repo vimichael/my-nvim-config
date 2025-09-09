@@ -27,7 +27,7 @@ return {
         ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
         ["<CR>"] = { "select_and_accept", "fallback" },
-        ["<C-e>"] = { "hide", "fallback" },
+        ["<C-e>"] = { "show", "hide", "fallback" },
       },
 
       appearance = {
@@ -50,6 +50,7 @@ return {
           auto_show_delay_ms = 0,
         },
         menu = {
+          auto_show = false,
           scrollbar = false,
           draw = {
             columns = {
