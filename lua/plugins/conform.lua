@@ -27,7 +27,7 @@ return {
         css = { "prettier", stop_after_first = true },
         fennel = { "fnlfmt" }
       },
-      format_on_save = function(bufnr)
+      format_on_save = function(_)
         if vim.g.disable_autoformat then
           return
         end

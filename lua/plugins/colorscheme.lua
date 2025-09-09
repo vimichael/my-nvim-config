@@ -1,53 +1,19 @@
 return {
-  {
-    "vim-scripts/newsprint.vim"
-  },
-  {
-    "gbprod/nord.nvim"
-  },
-  {
-    "slugbyte/lackluster.nvim",
-  },
-  {
-    "vim-scripts/zenesque.vim",
-  },
-  {
-    "jaredgorski/fogbell.vim",
-  },
-  -- Using lazy.nvim
-  -- {
-  --   "metalelf0/black-metal-theme-neovim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require("black-metal").setup({
-  --       theme = "taake",
-  --       code_style = {
-  --         comments = "none",
-  --         conditionals = "none",
-  --         functions = "none",
-  --         keywords = "none",
-  --         headings = "bold", -- Markdown headings
-  --         operators = "none",
-  --         keyword_return = "none",
-  --         strings = "none",
-  --         variables = "none",
-  --       },
-  --     })
-  --     require("black-metal").load()
-  --   end,
-  -- },
-  {
-    "oahlen/iceberg.nvim",
-  },
+  { "vim-scripts/newsprint.vim" },
+  { "gbprod/nord.nvim" },
+  { "slugbyte/lackluster.nvim", },
+  { "vim-scripts/zenesque.vim", },
+  { "jaredgorski/fogbell.vim", },
+  { "oahlen/iceberg.nvim", },
+  { "Skardyy/makurai-nvim", },
+  { "ellisonleao/gruvbox.nvim" },
+  { "jnurmine/Zenburn", },
+  { "RRethy/base16-nvim", },
   {
     "sainnhe/gruvbox-material",
     config = function()
       vim.g.gruvbox_material_background = "hard"
     end,
-  },
-  {
-    "Skardyy/makurai-nvim",
   },
   {
     "blazkowolf/gruber-darker.nvim",
@@ -62,7 +28,6 @@ return {
     priority = 1000,
     italic = false,
   },
-  { "ellisonleao/gruvbox.nvim" },
   {
     "vague2k/vague.nvim",
     config = function()
@@ -109,11 +74,5 @@ return {
         },
       })
     end,
-  },
-  {
-    "jnurmine/Zenburn",
-  },
-  {
-    "RRethy/base16-nvim",
   },
 }
