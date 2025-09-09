@@ -10,7 +10,7 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
         config = function()
-          require("telescope").load_extension("fzf")
+          -- require("telescope").load_extension("fzf")
         end
         -- build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
       },
@@ -32,9 +32,9 @@ return {
         },
         extensions = {
           fzf = {
-            fuzzy = true,             -- false will only do exact matching
+            fuzzy = true,                   -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
+            override_file_sorter = true,    -- override the file sorter
             case_mode = "smart_case",
           },
         },
@@ -56,7 +56,7 @@ return {
         },
       })
 
-      require("telescope").load_extension("fzf")
+      -- require("telescope").load_extension("fzf")
       require("telescope").load_extension("zoxide")
       -- telescope setup
       local builtin = require("telescope.builtin")
