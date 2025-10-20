@@ -16,7 +16,6 @@ vim.cmd("set foldnestmax=1")
 vim.cmd("set foldopen-=hor")
 vim.cmd("set splitright")
 
-vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
 vim.opt.exrc = true
 vim.o.scrolloff = 5
 vim.opt.ignorecase = true
