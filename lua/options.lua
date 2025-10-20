@@ -15,7 +15,6 @@ vim.cmd("set foldlevel=99")
 vim.cmd("set foldnestmax=1")
 vim.cmd("set foldopen-=hor")
 
-vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
 vim.opt.exrc = true
 vim.o.scrolloff = 5
 vim.opt.ignorecase = true
@@ -88,3 +87,5 @@ end, {
 })
 
 vim.api.nvim_command('autocmd VimResized * wincmd =')
+
+vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"

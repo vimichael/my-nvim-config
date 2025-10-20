@@ -11,9 +11,9 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
+        automatic_enable = false,
         ensure_installed = {
           "fortls",
-          -- "nil_ls",
           "bashls",
           "omnisharp",
           "cmake",
@@ -27,16 +27,12 @@ return {
           "ts_ls",
           "astro",
           "ols",
-          -- "gdscript",
-          -- "tsserver",
-          "pylsp",
+          "pyright",
           "clangd",
           "prismals",
           "yamlls",
           "jsonls",
           "eslint",
-          -- "hls",
-          -- "zls",
           "marksman",
           "sqlls",
           "wgsl_analyzer",
@@ -54,6 +50,7 @@ return {
       -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local lspconfig = require("lspconfig")
+      local util = require("lspconfig").util
       local configs = require("lspconfig.configs")
 
       lspconfig.cmake.setup({
@@ -68,7 +65,7 @@ return {
         filetypes = { "purescript" },
         settings = {
           purescript = {
-            addSpagoSources = true, -- e.g. any purescript language-server config here
+            addSpagoSources = true,
           },
         },
         flags = {
@@ -312,14 +309,29 @@ return {
         end
       end
 
-      lspconfig.pylsp.setup({
-        capabilties = capabilities,
-        settings = {
-          python = {
-            pythonPath = get_python_path(),
-          },
-        },
-      })
+      lspconfig.pyright.setup({})
+
+      -- lspconfig.pylsp.setup({
+      --   cmd = { "pylsp" },
+      --   capabilties = capabilities,
+      --   root_dir = function(fname)
+      --     local root_files = {
+      --       'pyproject.toml',
+      --       'setup.py',
+      --       'setup.cfg',
+      --       'requirements.txt',
+      --       'Pipfile',
+      --     }
+      --     return util.root_pattern(unpack(root_files))(fname)
+      --         or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+      --   end,
+      --   single_file_support = true,
+      --   -- settings = {
+      --   --   python = {
+      --   --     pythonPath = get_python_path(),
+      --   --   },
+      --   -- },
+      -- })
 
       lspconfig.marksman.setup({
         capabilties = capabilities,
