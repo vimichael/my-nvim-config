@@ -28,7 +28,6 @@ km("n", "<leader>t", "bv~")
 -- colorscheme picker
 km("n", "<C-n>", ":Telescope colorscheme<CR>")
 
-
 km("n", "<C-d>", "<C-d>zz")
 km("n", "<C-u>", "<C-u>zz")
 km("n", "<C-f>", "<C-f>zz")
@@ -48,44 +47,44 @@ km("n", "K", vim.lsp.buf.hover)
 km("n", "gd", vim.lsp.buf.definition)
 km("n", "gD", vim.lsp.buf.declaration)
 km("n", "gr", function()
-  -- Trigger the LSP references function and populate the quickfix list
-  vim.lsp.buf.references()
+	-- Trigger the LSP references function and populate the quickfix list
+	vim.lsp.buf.references()
 
-  vim.defer_fn(function()
-    -- Set up an autocmd to remap keys in the quickfix window
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "qf", -- Only apply this mapping in quickfix windows
-      callback = function()
-        -- Remap <Enter> to jump to the location and close the quickfix window
-        vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", { noremap = true, silent = true })
-        vim.api.nvim_buf_set_keymap(0, "n", "q", ":cclose<CR>", { noremap = true, silent = true })
+	vim.defer_fn(function()
+		-- Set up an autocmd to remap keys in the quickfix window
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "qf", -- Only apply this mapping in quickfix windows
+			callback = function()
+				-- Remap <Enter> to jump to the location and close the quickfix window
+				vim.api.nvim_buf_set_keymap(0, "n", "<CR>", "<CR>:cclose<CR>", { noremap = true, silent = true })
+				vim.api.nvim_buf_set_keymap(0, "n", "q", ":cclose<CR>", { noremap = true, silent = true })
 
-        -- Set up <Tab> to cycle through quickfix list entries
-        km("n", "<Tab>", function()
-          local current_idx = vim.fn.getqflist({ idx = 0 }).idx
-          local qflist = vim.fn.getqflist() -- Get the current quickfix list
-          if current_idx >= #qflist then
-            vim.cmd("cfirst")
-            vim.cmd("wincmd p")
-          else
-            vim.cmd("cnext")
-            vim.cmd("wincmd p")
-          end
-        end, { noremap = true, silent = true, buffer = 0 })
+				-- Set up <Tab> to cycle through quickfix list entries
+				km("n", "<Tab>", function()
+					local current_idx = vim.fn.getqflist({ idx = 0 }).idx
+					local qflist = vim.fn.getqflist() -- Get the current quickfix list
+					if current_idx >= #qflist then
+						vim.cmd("cfirst")
+						vim.cmd("wincmd p")
+					else
+						vim.cmd("cnext")
+						vim.cmd("wincmd p")
+					end
+				end, { noremap = true, silent = true, buffer = 0 })
 
-        km("n", "<S-Tab>", function()
-          local current_idx = vim.fn.getqflist({ idx = 0 }).idx
-          if current_idx < 2 then
-            vim.cmd("clast")
-            vim.cmd("wincmd p")
-          else
-            vim.cmd("cprev")
-            vim.cmd("wincmd p")
-          end
-        end, { noremap = true, silent = true, buffer = 0 })
-      end,
-    })
-  end, 0)
+				km("n", "<S-Tab>", function()
+					local current_idx = vim.fn.getqflist({ idx = 0 }).idx
+					if current_idx < 2 then
+						vim.cmd("clast")
+						vim.cmd("wincmd p")
+					else
+						vim.cmd("cprev")
+						vim.cmd("wincmd p")
+					end
+				end, { noremap = true, silent = true, buffer = 0 })
+			end,
+		})
+	end, 0)
 end)
 
 km({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
