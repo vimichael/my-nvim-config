@@ -17,6 +17,7 @@ return {
           luasnip.add_snippets("zig", require("snippets.zig"))
           luasnip.add_snippets("c", require("snippets.c"))
           luasnip.add_snippets("cpp", require("snippets.cpp"))
+          luasnip.add_snippets("cpp", require("snippets.c"))
         end
       },
     },
@@ -48,7 +49,7 @@ return {
         },
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 0,
+          auto_show_delay_ms = 200,
         },
         menu = {
           auto_show = true,

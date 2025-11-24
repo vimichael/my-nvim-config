@@ -6,6 +6,7 @@ require("custom_filetypes")
 require("lazynvim")
 require("cool_stuff")
 require("mappings")
+require("autocmds")
 
 utils.color_overrides.setup_colorscheme_overrides()
 

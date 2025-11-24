@@ -21,6 +21,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tex",
+  callback = function() vim.cmd("setlocal spell spelllang=en_us") end
+})
+
 -- snippet things
 
 function leave_snippet()
