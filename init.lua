@@ -1,9 +1,9 @@
 local utils = require("utils")
 
 require("options")
-require("keymaps")
 require("custom_filetypes")
 require("lazynvim")
+require("keymaps")
 require("cool_stuff")
 require("mappings")
 require("autocmds")
