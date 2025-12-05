@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd({ "FileType", "VimEnter", "BufReadPre" }, {
   pattern = { "*.md" },
   callback = function()
     vim.schedule(function()
-      vim.keymap.set("n", "<space>md", ":lua OpenInObsidian()<CR>", { noremap = true, silent = true })
+      vim.keymap.set("n", "<space>md", ":OpenInObsidian<CR>", { noremap = true, silent = true })
       vim.o.shiftwidth = 2
     end)
   end,

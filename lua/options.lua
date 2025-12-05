@@ -22,27 +22,28 @@ vim.opt.ignorecase = true
 vim.g.zig_fmt_parse_errors = 0
 
 vim.diagnostic.config({
-	virtual_text = true,
+  virtual_text = true,
 })
 
 -- minor visual changes to panes
 vim.opt.fillchars =
-	{ vert = " ", horiz = " ", horizup = " ", horizdown = " ", vertleft = " ", vertright = " ", verthoriz = " " }
+{ vert = " ", horiz = " ", horizup = " ", horizdown = " ", vertleft = " ", vertright = " ", verthoriz = " " }
 
 vim.opt.guicursor = "n-v-c:block-blinkon1-CursorInsert,i:block-CursorInsert"
 
 vim.api.nvim_create_user_command("Setwd", function()
-	vim.cmd("cd " .. vim.fn.expand("%:p:h"))
+  vim.cmd("cd " .. vim.fn.expand("%:p:h"))
 end, {})
 
 local utils = require("utils")
 local os_name = utils.get_os()
 
 if os_name == "windows" then
-	vim.cmd("set shell=powershell")
+  vim.cmd("set shell=powershell")
 else
-	vim.cmd("set shell=/bin/zsh")
+  vim.cmd("set shell=/bin/zsh")
 end
+
 vim.cmd("set shellcmdflag=-c")
 vim.cmd("set shellquote=")
 vim.cmd("set shellxquote=")
@@ -62,29 +63,36 @@ vim.cmd([[
 autocmd! DiagnosticChanged * lua vim.diagnostic.setloclist({open = false}) ]])
 
 function OpenInObsidian()
-	local file = vim.fn.expand("<cfile>")
-	if file:match("%.md$") then
-		local vault = "notes"
-		local vault_path = vim.fn.expand("~/path/to/vault/")
-		local relative_path = file:gsub(vault_path, "")
-		local obsidian_url = "obsidian://open?vault=" .. vault .. "&file=" .. vim.fn.fnameescape(relative_path)
-		vim.fn.system({ "open", obsidian_url })
-	else
-		vim.cmd("silent open " .. file)
-	end
+  local file = vim.fn.expand("%:p")
+  if file:match("%.md$") then
+    local vault = "notes"
+    local vault_path = vim.fn.expand("~/notes")
+    local relative_path = file:gsub(vault_path, "")
+    -- local relative_path = file:gsub(vault_path, "")
+    local obsidian_url = "obsidian://open?vault=" .. vault .. "&file=" .. vim.fn.fnameescape(relative_path)
+    if os_name == "mac" then
+      vim.fn.system({ "open", obsidian_url })
+    else
+      vim.fn.system({ "xdg-open", obsidian_url })
+    end
+  else
+    vim.cmd("silent edit " .. vim.fn.fnameescape(file))
+  end
 end
 
+vim.api.nvim_create_user_command("OpenInObsidian", OpenInObsidian, { desc = "opens the current buffer in obsidian" })
+
 vim.api.nvim_create_user_command("FormatDisable", function(_)
-	vim.g.disable_autoformat = true
+  vim.g.disable_autoformat = true
 end, {
-	desc = "Disable autoformat-on-save",
+  desc = "Disable autoformat-on-save",
 })
 
 vim.api.nvim_create_user_command("FormatEnable", function()
-	vim.b.disable_autoformat = false
-	vim.g.disable_autoformat = false
+  vim.b.disable_autoformat = false
+  vim.g.disable_autoformat = false
 end, {
-	desc = "Re-enable autoformat-on-save",
+  desc = "Re-enable autoformat-on-save",
 })
 
 vim.api.nvim_command("autocmd VimResized * wincmd =")

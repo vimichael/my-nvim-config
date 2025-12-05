@@ -1,9 +1,10 @@
 local utils = require("utils")
 
 require("options")
+local km = require("keymaps")
 require("custom_filetypes")
 require("lazynvim")
-require("keymaps")
+km.after_lazy_keymaps()
 require("cool_stuff")
 require("mappings")
 require("autocmds")

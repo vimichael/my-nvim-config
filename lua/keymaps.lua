@@ -1,3 +1,5 @@
+local M = {}
+
 local km = vim.keymap.set
 
 -- remaps
@@ -19,6 +21,9 @@ km("n", "=", [[<cmd>vertical resize +5<cr>]])
 km("n", "-", [[<cmd>vertical resize -5<cr>]])
 km("n", "+", [[<cmd>horizontal resize +5<cr>]])
 km("n", "^", [[<cmd>horizontal resize +5<cr>]])
+km("n", "<leader>vs", ":vsplit<CR>")
+km("n", "<leader>hs", ":split<CR>")
+km("n", "<leader>wc", ":clo<CR>")
 
 -- move selections
 km("v", "J", ":m '>+1<CR>gv=gv") -- Shift visual selected line down
@@ -26,17 +31,7 @@ km("v", "K", ":m '<-2<CR>gv=gv") -- Shift visual selected line up
 km("n", "<leader>t", "bv~")
 
 -- colorscheme picker
-local builtin = require("telescope.builtin")
 km("n", "<C-n>", ":Telescope colorscheme<CR>")
-km("n", "<leader>jk", ":Telescope find_files<CR>", {})
-km("n", "<leader>fb", ":Telescope file_browser<cr>", {})
-km("n", "<leader>fg", builtin.live_grep, {})
-km("n", "<leader>fd", builtin.diagnostics, {})
-km("n", "<leader>ds", builtin.lsp_document_symbols, {})
-km("n", "<leader>ws", builtin.lsp_workspace_symbols, {})
-km("n", "<leader>fz", ":Telescope zoxide list<CR>", {})
-km("n", "<leader>fv", builtin.help_tags, {})
-km("n", "<leader>fp", builtin.builtin, {})
 
 km("n", "<C-d>", "<C-d>zz")
 km("n", "<C-u>", "<C-u>zz")
@@ -108,5 +103,9 @@ km("n", "<leader>e", vim.diagnostic.open_float)
 km("n", "[e", vim.diagnostic.goto_next)
 km("n", "]e", vim.diagnostic.goto_next)
 
--- notes and related
-km("n", "<leader>lc", ":LinkConvertAll<CR>") -- make all links in markdown refs
+M.after_lazy_keymaps = function()
+  -- notes and related
+  km("n", "<leader>lc", ":LinkConvertAll<CR>") -- make all links in markdown refs
+end
+
+return M
