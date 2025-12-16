@@ -80,3 +80,5 @@ vim.api.nvim_create_autocmd({ "FileType", "VimEnter", "BufReadPre" }, {
     end)
   end,
 })
+
+require("macros")
