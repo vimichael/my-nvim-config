@@ -86,7 +86,7 @@ return {
         configs.roc_ls = {
           default_config = {
             cmd = { "roc_language_server", "--stdio" },
-            capabilties = capabilities,
+            capabilities = capabilities,
             filetypes = {
               "roc",
             },
@@ -97,10 +97,10 @@ return {
       lspconfig.roc_ls.setup({
         capabilities = capabilities,
       })
-      lspconfig.gdscript.setup({
-        capabilities = capabilities,
-        filetypes = { "gd", "gdscript", "gdscript3" },
-      })
+      -- lspconfig.gdscript.setup({
+      --   capabilities = capabilities,
+      --   filetypes = { "gd", "gdscript", "gdscript3" },
+      -- })
       lspconfig.astro.setup({
         capabilities = capabilities,
       })
@@ -238,7 +238,7 @@ return {
         configs.ts_ls = {
           default_config = {
             cmd = { "typescript-language-server", "--stdio" },
-            capabilties = capabilities,
+            capabilities = capabilities,
             filetypes = {
               "javascript",
               "javascriptreact",
@@ -252,7 +252,7 @@ return {
         }
       end
       lspconfig.ts_ls.setup({
-        -- capabilties = capabilities,
+        -- capabilities = capabilities,
         -- cmd = { "typescript-language-server", "--stdio" },
         -- filetypes = {
         --   "javascript",
@@ -265,7 +265,7 @@ return {
         -- single_file_support = true,
       })
       lspconfig.eslint.setup({
-        capabilties = capabilities,
+        capabilities = capabilities,
       })
 
       require("lspconfig").clangd.setup({
@@ -313,7 +313,7 @@ return {
 
       -- lspconfig.pylsp.setup({
       --   cmd = { "pylsp" },
-      --   capabilties = capabilities,
+      --   capabilities = capabilities,
       --   root_dir = function(fname)
       --     local root_files = {
       --       'pyproject.toml',
@@ -334,31 +334,73 @@ return {
       -- })
 
       lspconfig.marksman.setup({
-        capabilties = capabilities,
+        capabilities = capabilities,
       })
       lspconfig.gleam.setup({
-        capabilties = capabilities,
+        capabilities = capabilities,
       })
       lspconfig.nim_langserver.setup({
-        capabilties = capabilities,
+        capabilities = capabilities,
       })
       lspconfig.omnisharp.setup({
-        capabilties = capabilities,
+        capabilities = capabilities,
         cmd = { "OmniSharp" },
       })
       lspconfig.fennel_ls.setup({
-        capabilties = capabilities,
+        capabilities = capabilities,
         cmd = { "fennel-ls" },
       })
       lspconfig.rescriptls.setup({
-        capabilties = capabilities,
+        capabilities = capabilities,
         cmd = { "rescript-language-server", "--stdio" },
         root_dir = require("lspconfig").util.root_pattern("rescript.json"),
       })
+
       lspconfig.julials.setup({
-        capabilties = capabilities,
-        cmd = { "julia-lsp" },
+        capabilities = capabilities,
+        -- cmd = { "julia-lsp" },
+        cmd = {
+          "julia",
+          "--project=" .. "~/.julia/environments/lsp/",
+          "--startup-file=no",
+          "--history-file=no",
+          "-e", [[
+            using Pkg
+            Pkg.instantiate()
+            using LanguageServer
+        depot_path = get(ENV, "JULIA_DEPOT_PATH", "")
+        project_path = let
+            dirname(something(
+                ## 1. Finds an explicitly set project (JULIA_PROJECT)
+                Base.load_path_expand((
+                    p = get(ENV, "JULIA_PROJECT", nothing);
+                        p === nothing ? nothing : isempty(p) ? nothing : p
+                    )),
+                        ## 2. Look for a Project.toml file in the current working directory,
+                        ##    or parent directories, with $HOME as an upper boundary
+                        Base.current_project(),
+                        ## 3. First entry in the load path
+                        get(Base.load_path(), 1, nothing),
+                        ## 4. Fallback to default global environment,
+                        ##    this is more or less unreachable
+                    Base.load_path_expand("@v#.#"),
+                ))
+            end
+                    @info "Running language server" VERSION pwd() project_path depot_path
+                    server = LanguageServer.LanguageServerInstance(stdin, stdout, project_path, depot_path)
+        server.runlinter = true
+            run(server)
+        ]]
+        },
+        on_attach = function(client, bufnr)
+          vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+        end,
         root_dir = require("lspconfig").util.root_pattern("*.jl"),
+      })
+      lspconfig.c3_lsp.setup({
+        capabilities = capabilities,
+        cmd = { "c3lsp" },
+        root_dir = require("lspconfig").util.root_pattern({ "project.json", "*.c3" }),
       })
     end,
   },

@@ -57,7 +57,7 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.bo.softtabstop = 2
 
-vim.lsp.set_log_level("warn")
+-- vim.lsp.set_log_level("warn")
 
 vim.cmd([[
 autocmd! DiagnosticChanged * lua vim.diagnostic.setloclist({open = false}) ]])

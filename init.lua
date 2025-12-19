@@ -1,5 +1,10 @@
 local utils = require("utils")
 
+-- stop annoying deprecation errors that i cant control
+-- because i dont have access to the plugins that use
+-- the deprecated functions
+vim.deprecate = function() end
+
 require("options")
 local km = require("keymaps")
 require("custom_filetypes")

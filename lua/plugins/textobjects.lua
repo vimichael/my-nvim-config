@@ -1,8 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter-textobjects",
+  branch = "main",
   dependencies = { "nvim-treesitter" },
   config = function()
-    require("nvim-treesitter.configs").setup({
+    require("nvim-treesitter").setup({
       textobjects = {
         move = {
           enable = true,
