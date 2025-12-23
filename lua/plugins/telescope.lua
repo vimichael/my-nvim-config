@@ -18,7 +18,9 @@ return {
     config = function()
       require("telescope").setup({
         defaults = {
-
+          preview = {
+            treesitter = false,
+          },
           border = {
             prompt = { 1, 1, 1, 1 },
             results = { 1, 1, 1, 1 },
