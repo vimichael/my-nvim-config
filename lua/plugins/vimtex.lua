@@ -8,6 +8,8 @@ return {
 
 		if os == "linux" then
 			vim.g.vimtex_view_method = "mupdf"
+		elseif os == "mac" then
+			vim.g.vimtex_view_method = "skim"
 		else
 			vim.g.vimtex_view_method = "zathura"
 		end
